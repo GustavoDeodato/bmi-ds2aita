@@ -12,4 +12,5 @@
     <string name="calculate">Calculate</string>
     <string name="YouBMI">Your BMI Result</string>
     <string name="You_have_class">You Have Class I Obesity</string>
+    <string name="NewCalc">New Calc</string>
 </resources>

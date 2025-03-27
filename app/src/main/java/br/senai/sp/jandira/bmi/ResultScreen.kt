@@ -13,8 +13,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -29,8 +31,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-
 
 
 @Composable
@@ -53,7 +53,6 @@ fun ResultScreen(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
-
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
@@ -81,139 +80,132 @@ fun ResultScreen(modifier: Modifier = Modifier) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .weight(6f)
                         .padding(15.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Row(
+                    Card(
                         modifier = Modifier
-                            .height(130.dp)
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .padding(bottom = 10.dp)
-                                .size(120.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = Color.White
-                            ),
-                            shape = CircleShape,
-                            border = BorderStroke(
-                                width = 4.dp,
-                                brush = Brush.linearGradient(
-                                    listOf(
-                                        Color(0xFFFF9800),
-                                        Color(0xFFFFC107)
-                                    )
+                            .padding(bottom = 10.dp)
+                            .size(120.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.White
+                        ),
+                        shape = CircleShape,
+                        border = BorderStroke(
+                            width = 4.dp,
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color(0xFFFF9800),
+                                    Color(0xFFFFC107)
                                 )
                             )
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "30,6",
+                                color = Color.Black,
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 40.sp
+                            )
+                        }
+                    }
+                    Text(
+                        text = stringResource(R.string.You_have_class),
+                        color = Color.Black,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 30.sp
+                    )
+                    Card(
+                        modifier = Modifier
+                            .height(80.dp)
+                            .fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             Column(
                                 modifier = Modifier
-                                    .fillMaxSize(),
-                                verticalArrangement = Arrangement.Center,
-                                horizontalAlignment = Alignment.CenterHorizontally
+                                    .weight(1f),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
                             ) {
                                 Text(
-                                    text = "30,6",
-                                    color = Color.Black,
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontSize = 40.sp
+                                    text = stringResource(R.string.age)
                                 )
+                                Text(
+                                    text = "50",
+                                    fontWeight = FontWeight.SemiBold
+                                )
+
                             }
+                            VerticalDivider()
+                            Column(
+                                modifier = Modifier
+                                    .weight(1f),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.weight)
+                                )
+                                Text(
+                                    text = "97kg",
+                                    fontWeight = FontWeight.SemiBold
+                                )
+
+                            }
+                            VerticalDivider()
+                            Column(
+                                modifier = Modifier
+                                    .weight(1f),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.height)
+
+
+                                )
+                                Text(
+                                    text = "178cm",
+                                    fontWeight = FontWeight.SemiBold
+                                )
+
+                            }
+
                         }
                     }
-                    Row(
+                    Column(
+                        modifier = Modifier
+                            .background(Color.DarkGray)
+                            .fillMaxWidth()
+                            .height(300.dp)
+                    ) {
+
+                    }
+                    HorizontalDivider()
+                    Button(
+                        onClick = {},
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(40.dp),
-                        horizontalArrangement = Arrangement.Center
+                            .padding(top = 20.dp)
+                            .height(48.dp),
+                        shape = RoundedCornerShape(8.dp)
                     ) {
                         Text(
-                            text = stringResource(R.string.You_have_class),
-                            color = Color.Black,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 30.sp
+                            text = stringResource(R.string.NewCalc),
+                            fontSize = 26.sp
                         )
-                    }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(80.dp)
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxSize(),
-                                horizontalArrangement = Arrangement.Center,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Column (
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .weight(3f),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.Center
-                                ){
-                                        Text(
-                                            text = stringResource(R.string.age)
-
-
-
-
-                                        )
-                                    Text(
-                                        text = "50",
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-
-                                }
-                                VerticalDivider()
-                                Column (
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .weight(3f),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.Center
-                                ){
-                                    Text(
-                                        text = stringResource(R.string.weight)
-
-                                    )
-                                    Text(
-                                        text = "97kg",
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-
-                                }
-                                VerticalDivider()
-                                Column (
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .weight(3f),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.Center
-                                ){
-                                    Text(
-                                        text = stringResource(R.string.height)
-
-
-
-
-                                    )
-                                    Text(
-                                        text = "178cm",
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -221,9 +213,10 @@ fun ResultScreen(modifier: Modifier = Modifier) {
     }
 }
 
+
 @Preview(showSystemUi = true)
 @Composable
-private fun ResultScreenPreview(){
+private fun ResultScreenPreview() {
     ResultScreen()
 
 }

@@ -59,4 +59,7 @@ dependencies {
 
     //libs extras
     implementation(libs.androidx.material.icons.extended.android)
+
+    //Lib para navegação
+    implementation(libs.androidx.navigation.compose)
 }
