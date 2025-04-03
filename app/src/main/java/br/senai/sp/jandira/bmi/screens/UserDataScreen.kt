@@ -32,6 +32,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -44,10 +45,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 @Composable
-fun UserDataScreen(){
+fun UserDataScreen(navegacao: NavHostController?){
 
     val context = LocalContext.current
     val userFile = context.getSharedPreferences("user_file", Context.MODE_PRIVATE)
@@ -57,6 +59,20 @@ fun UserDataScreen(){
     val nameState = remember {
         mutableStateOf("")
     }
+
+    val ageState = remember {
+        mutableStateOf("")
+    }
+
+    val weightState = remember {
+        mutableStateOf("")
+    }
+
+    val heightState = remember {
+        mutableStateOf("")
+    }
+
+
 
     Box(
         modifier = Modifier
@@ -69,7 +85,7 @@ fun UserDataScreen(){
                 .background(color = Color.Green)
         ){
             Text(
-                text = stringResource(R.string.hi) + ", $userName!",
+                text = stringResource(R.string.hi) + " $userName!",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -198,8 +214,10 @@ fun UserDataScreen(){
 
                     ){
                         OutlinedTextField(
-                            value = "",
-                            onValueChange = {},
+                            value = ageState.value,
+                            onValueChange = {
+                                ageState.value = it
+                            },
                             modifier = Modifier
                                 .padding(bottom = 20.dp),
                             leadingIcon = {
@@ -217,8 +235,10 @@ fun UserDataScreen(){
                         )
 
                         OutlinedTextField(
-                            value = "",
-                            onValueChange = {},
+                            value = weightState.value,
+                            onValueChange = {
+                                weightState.value = it
+                            },
                             modifier = Modifier
                                 .padding(bottom = 20.dp),
                             leadingIcon = {
@@ -236,8 +256,10 @@ fun UserDataScreen(){
                         )
 
                         OutlinedTextField(
-                            value = "",
-                            onValueChange = {},
+                            value = heightState.value,
+                            onValueChange = {
+                                heightState.value = it
+                            },
                             modifier = Modifier
                                 .padding(bottom = 20.dp),
                             leadingIcon = {
@@ -256,7 +278,14 @@ fun UserDataScreen(){
                     }
 
                     Button(
-                        onClick = {},
+                        onClick = {
+                            val editor = userFile.edit()
+                            editor.putInt("user_age", ageState.value.toInt())
+                            editor.putFloat("user_weight", weightState.value.toFloat())
+                            editor.putFloat("user_height", heightState.value.toFloat())
+                            editor.apply()
+                            navegacao?.navigate("bmi_result")
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 20.dp)
@@ -284,5 +313,5 @@ fun UserDataScreen(){
 @Preview
 @Composable
 private fun UserDataScreenPreview(){
-    UserDataScreen()
+    UserDataScreen(navegacao = null)
 }

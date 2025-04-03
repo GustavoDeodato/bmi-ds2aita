@@ -13,4 +13,10 @@
     <string name="YouBMI">Your BMI Result</string>
     <string name="You_have_class">You Have Class I Obesity</string>
     <string name="NewCalc">New Calc</string>
+    <string name="under_weight">Você esta abaixo do peso</string>
+    <string name="normal_weight">Você esta no peso ideal</string>
+    <string name="over_weight">Você esta acima do peso</string>
+    <string name="class1_weight">Parabéns! Você tem obesidade nivel 1!</string>
+    <string name="class2_weight">Parabéns! Você tem obesidade nivel 2</string>
+    <string name="class3_weight">Cacetadas! Você tem nivel 3 de obesidade.</string>
 </resources>

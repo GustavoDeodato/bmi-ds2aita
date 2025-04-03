@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,18 +27,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 
 @Composable
-fun ResultScreen(modifier: Modifier = Modifier) {
+fun ResultScreen(navegacao: NavHostController?) {
     var nameState = remember {
         mutableStateOf("")
     }
+    val userFile = LocalContext.current.getSharedPreferences("user_file", Context.MODE_PRIVATE)
+
+    val userHeight = userFile.getFloat("user_height", 0.0f)
+    val userWeight = userFile.getFloat("user_weight", 0.0f)
+    val userAge = userFile.getFloat("user_age", 0.0f)
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -143,7 +151,7 @@ fun ResultScreen(modifier: Modifier = Modifier) {
                                     text = stringResource(R.string.age)
                                 )
                                 Text(
-                                    text = "50",
+                                    text = "$userAge",
                                     fontWeight = FontWeight.SemiBold
                                 )
 
@@ -159,7 +167,7 @@ fun ResultScreen(modifier: Modifier = Modifier) {
                                     text = stringResource(R.string.weight)
                                 )
                                 Text(
-                                    text = "97kg",
+                                    text = "$userWeight Kg",
                                     fontWeight = FontWeight.SemiBold
                                 )
 
@@ -177,7 +185,7 @@ fun ResultScreen(modifier: Modifier = Modifier) {
 
                                 )
                                 Text(
-                                    text = "178cm",
+                                    text = "$userHeight cm",
                                     fontWeight = FontWeight.SemiBold
                                 )
 
@@ -217,6 +225,6 @@ fun ResultScreen(modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun ResultScreenPreview() {
-    ResultScreen()
+    ResultScreen(navegacao = null)
 
 }
